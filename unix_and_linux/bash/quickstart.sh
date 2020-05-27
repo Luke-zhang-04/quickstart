@@ -3,7 +3,6 @@
 args="$*"
 
 checkParams() {
-    echo "$args" "$2" "$3"
     if [[ $args == *"$2"* ]]; then
         eval $1=true
     elif [[ $args == *"$3"* ]]&&[["$3"]]; then
