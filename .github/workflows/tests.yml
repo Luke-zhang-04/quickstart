@@ -2,9 +2,9 @@ name: tests
 
 on:
   push:
-    branches: [ master, calendar ]
+    branches: [ master ]
   pull_request:
-    branches: [ master, calendar ]
+    branches: [ master ]
 
 jobs:
   react:
