@@ -29,7 +29,9 @@ checkParams bootstrap bootstrap bs
 checkParams noVer noVer nv
 
 cleanup() {
-    cd .. # cd back 1 level
+    if ("$react"); then
+        cd .. # cd back 1 level
+    fi
     rm -rf ./quickstart # Get rid of quickstart
 }
 
