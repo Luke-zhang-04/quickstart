@@ -10,6 +10,7 @@ jobs:
   react-ts-eslint:
     runs-on: ubuntu-latest
     steps:
+    - run: ls -a
     - run: bash ./bash/main.sh react ts eslint
     - run: Y
     
