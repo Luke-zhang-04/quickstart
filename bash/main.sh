@@ -42,17 +42,17 @@ cleanup() {
 #######################################
 getBootstrap() {
     if "$bootstrap"; then # If Bootstrap was requested
-        printf "\tFound bootstrap\n\tInstalling Bootstrap..."
+        printf "\tFound bootstrap\n\tInstalling Bootstrap...\n"
         yarn add bootstrap # Add bootstrap with Yarn
-        printf "\tInstalled Boostrap!\n\tMaking SCSS directory..."
+        printf "\tInstalled Boostrap!\n\tMaking SCSS directory...\n"
         mkdir scss # Make a SCSS directory
 
-        printf "Adding default imports to scss/bootstrap.scss..."
+        printf "Adding default imports to scss/bootstrap.scss...\n"
         # Add default imports into ./scss/bootstrap.scss
         printf "/*!\n * Bootstrap v4.5.0 (https://getbootstrap.com/)\n * Copyright 2011-2020 The Bootstrap Authors\n * Copyright 2011-2020 Twitter, Inc.\n * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n */\n\n// Required\n@import \"./../node_modules/bootstrap/scss/functions\";\n@import \"./../node_modules/bootstrap/scss/variables\";\n@import \"./../node_modules/bootstrap/scss/mixins\";\n\n// Optional\n@import \"./../node_modules/bootstrap/scss/root\";\n@import \"./../node_modules/bootstrap/scss/reboot\";\n@import \"./../node_modules/bootstrap/scss/type\";\n@import \"./../node_modules/bootstrap/scss/images\";\n@import \"./../node_modules/bootstrap/scss/code\";\n@import \"./../node_modules/bootstrap/scss/grid\";\n@import \"./../node_modules/bootstrap/scss/tables\";\n@import \"./../node_modules/bootstrap/scss/forms\";\n@import \"./../node_modules/bootstrap/scss/buttons\";\n@import \"./../node_modules/bootstrap/scss/transitions\";\n@import \"./../node_modules/bootstrap/scss/dropdown\";\n@import \"./../node_modules/bootstrap/scss/button-group\";\n@import \"./../node_modules/bootstrap/scss/input-group\";\n@import \"./../node_modules/bootstrap/scss/custom-forms\";\n@import \"./../node_modules/bootstrap/scss/nav\";\n@import \"./../node_modules/bootstrap/scss/navbar\";\n@import \"./../node_modules/bootstrap/scss/card\";\n@import \"./../node_modules/bootstrap/scss/breadcrumb\";\n@import \"./../node_modules/bootstrap/scss/pagination\";\n@import \"./../node_modules/bootstrap/scss/badge\";\n@import \"./../node_modules/bootstrap/scss/jumbotron\";\n@import \"./../node_modules/bootstrap/scss/alert\";\n@import \"./../node_modules/bootstrap/scss/progress\";\n@import \"./../node_modules/bootstrap/scss/media\";\n@import \"./../node_modules/bootstrap/scss/list-group\";\n@import \"./../node_modules/bootstrap/scss/close\";\n@import \"./../node_modules/bootstrap/scss/toasts\";\n@import \"./../node_modules/bootstrap/scss/modal\";\n@import \"./../node_modules/bootstrap/scss/tooltip\";\n@import \"./../node_modules/bootstrap/scss/popover\";\n@import \"./../node_modules/bootstrap/scss/carousel\";\n@import \"./../node_modules/bootstrap/scss/spinners\";\n@import \"./../node_modules/bootstrap/scss/utilities\";\n@import \"./../node_modules/bootstrap/scss/print\";\n" >> scss/bootstrap.scss
-        printf "\tInstalled Bootstrap!"
+        printf "\tInstalled Bootstrap!\n"
     else
-        printf "\tBootstrap not found"
+        printf "\tBootstrap not found\n"
     fi
 }
 
@@ -66,17 +66,17 @@ getBootstrap() {
 #######################################
 reactApp() {
     if "$react_app"&&"$typescript"; then # React app w/ typescript
-        printf "\tFound React with Typescript\n\tInstalling React with Typescript..."
+        printf "\tFound React with Typescript\n\tInstalling React with Typescript...\n"
         npx create-react-app client --template typescript # Create React app named client, with typescript template
-        printf "\tInstalled React with Typescript!"
+        printf "\tInstalled React with Typescript!\n"
         cd client # cd into client
     elif "$react_app"; then # React app wo/ typescript
-        printf "\tFound React without Typescript\n\tInstalling React..."
+        printf "\tFound React without Typescript\n\tInstalling React...\n"
         npx create-react-app client # Create React app names client
-        printf "\tInstalled React!"
+        printf "\tInstalled React!\n"
         cd client # cd into client
     else
-        printf "\tReact not found"
+        printf "\tReact not found\n"
     fi
 }
 
@@ -110,7 +110,7 @@ quickStart() {
 }
 
 # Ask for proceeding
-printf "Preparing to quickstart with: $args\n"
+printf "Preparing to quickstart with: $args"
 
 if ! [ "$noVer" ]; then
     read -n 1 -p "Proceed? [Y/n] " proceed
