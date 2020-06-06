@@ -1,4 +1,4 @@
-name: build
+name: tests
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
   react-ts-eslint:
     runs-on: ubuntu-latest
     steps:
-    - run: ls -a
-    - run: bash ./bash/main.sh react ts eslint
-    - run: Y
+      - uses: actions/checkout@v1
+      - run: ls -a
+      - run: bash ./../../bash/main.sh react ts eslint
     
