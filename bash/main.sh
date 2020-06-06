@@ -52,6 +52,7 @@ quickStart() {
 
     if [ "$bootstrap" ]; then # If Bootstrap was requested
         yarn add bootstrap
+    fi
 
     rm -rf ./quickstart # Get rid of quickstart
 }
