@@ -4,11 +4,11 @@ args="$*" # Passed in arguments
 
 checkParams() { # Check passed in arguments and match them
     if [[ $args == *"$2"* ]]; then
-        eval $1=true
+        eval "$1"=true
     elif [[ $args == *"$3"* ]]&&[[ "$3" ]]; then
-        eval $1=true
+        eval "$1"=true
     else 
-        eval $1=false
+        eval "$1"=false
     fi
 }
 
