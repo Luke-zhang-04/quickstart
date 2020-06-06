@@ -1,0 +1,15 @@
+name: build
+
+on:
+  push:
+    branches: [ master, calendar ]
+  pull_request:
+    branches: [ master, calendar ]
+
+jobs:
+  react-ts-eslint:
+    runs-on: ubuntu-latest
+    steps:
+    - run: bash ./bash/main.sh react ts eslint
+    - run: Y
+    
