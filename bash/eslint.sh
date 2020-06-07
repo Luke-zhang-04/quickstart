@@ -75,7 +75,7 @@ getEslint() {
         printf "\t${IGreen}Installed Eslint with Typescript!${Cyan}\n"
     elif "$1"; then
         printf "\t${IGreen}Eslint without Typescript requested\n\t${IBlue}Installing Eslint with Typescript...\n"
-        cloneConfigGist $3
+        cloneConfigGist "$3"
 
         # Chceck for .eslintrc
         printf "\t\t${IBlue}Checking for .eslintrc file...${Cyan}\n"
