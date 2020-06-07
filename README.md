@@ -23,7 +23,7 @@ Shell scripts to help you configure a project faster.
 
 ```bash
 cd my_project_root
-bash ../quckstart/bash/main.sh react ts bs esl sl cc make
+bash ../quckstart/bash.bash react ts bs esl sl cc make
 ```
 </p>
 </details>
@@ -34,7 +34,7 @@ Coming soon, for now, just run with bash
 
 ```zsh
 cd my_project_root
-bash ../quckstart/bash/main.sh react ts bs esl sl cc make
+bash ../quckstart/bash.bash react ts bs esl sl cc make
 ```
 </p>
 </details>
@@ -45,7 +45,7 @@ Coming soon, for now, just run with bash
 
 ```shell
 cd my_project_root
-bash ../quckstart/bash/main.sh react ts bs esl sl cc make
+bash ../quckstart/bash.bash react ts bs esl sl cc make
 ```
 </p>
 </details>
