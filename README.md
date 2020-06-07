@@ -30,19 +30,20 @@ bash ../quckstart/bash/main.sh react ts bs eslint stylelint codeclimate
 <details>
 <summary>zsh</summary>
 <p>
+Coming soon, for now, just run with bash
 
-```bash
+```zsh
 cd my_project_root
-zsh ../quckstart/bash/main.sh react ts bs eslint stylelint codeclimate
+bash ../quckstart/bash/main.sh react ts bs eslint stylelint codeclimate
 ```
 </p>
 </details>
 <details>
 <summary>fish</summary>
 <p>
-Coming soon, for now, just run with bash or zsh
+Coming soon, for now, just run with bash
 
-```bash
+```shell
 cd my_project_root
 bash ../quckstart/bash/main.sh react ts bs eslint stylelint codeclimate
 ```
