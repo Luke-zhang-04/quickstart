@@ -7,11 +7,13 @@ scripts=("bootstrap" "eslint" "react")
 
 # Import other scripts from bash directory
 for script in "${scripts[@]}"; do
-    . "$DIR/$script.sh"
+    . "${DIR}/${script}.sh"
 done
 
+. "${DIR}/colours.sh"
+
 args="$*" # Passed in arguments
-quickstartAscii="\033[0;36m
+quickstartAscii="$Cyan
   ____        _      _        _             _   
  / __ \      (_)    | |      | |           | |  
 | |  | |_   _ _  ___| | _____| |_ __ _ _ __| |_ 
@@ -19,7 +21,7 @@ quickstartAscii="\033[0;36m
 | |__| | |_| | | (__|   <\__ \ || (_| | |  | |_ 
  \___\__\__,_|_|\___|_|\_\___/\__\__,_|_|   \__|
 "
-startupText="\033[0;36mCheck us out on GitHub! https://github.com/Luke-zhang-04/quickstart\nWe promise that none of our dependencies, remote repositories/Gists, or shell scripts contain malicious code, but why trust us? Go see for yourself!\nhttps://gist.github.com/Luke-zhang-04/140bea238fa6dec12929c220645540e1\nhttps://gist.github.com/Luke-zhang-04/d4c19d39f0a462fc79e0b3361752cf95\n"
+startupText="${Cyan}Check us out on GitHub! https://github.com/Luke-zhang-04/quickstart\nWe promise that none of our dependencies, remote repositories/Gists, or shell scripts contain malicious code, but why trust us? Go see for yourself!\nhttps://gist.github.com/Luke-zhang-04/140bea238fa6dec12929c220645540e1\nhttps://gist.github.com/Luke-zhang-04/d4c19d39f0a462fc79e0b3361752cf95\n"
 
 #######################################
 # Checks parameters
@@ -61,52 +63,52 @@ checkParams noVer noVer nv
 #######################################
 quickStart() {
     # Clone the quickstart Gist. Check this Gist's code first, in case you don't trust me (don't trust anyone).
-    printf "\033[0;94mCloning quickstart gist from https://gist.github.com/d4c19d39f0a462fc79e0b3361752cf95.git\033[0;36m\n"
+    printf "${IBlue}Cloning quickstart gist from https://gist.github.com/d4c19d39f0a462fc79e0b3361752cf95.git${Cyan}\n"
     git clone https://gist.github.com/d4c19d39f0a462fc79e0b3361752cf95.git quickstart
 
-    printf "\033[0;94mChecking for .gitignore file...\033[0;36m\n"
+    printf "${IBlue}Checking for .gitignore file...${Cyan}\n"
     if test -f ".gitignore"; then
-        printf "\t\033[0;93m.gitignore exists\033[0;36m\n"
+        printf "\t${IYellow}.gitignore exists${Cyan}\n"
     else
-        printf "\t\033[0;.gitignore does not exist\033[0;36m\n"
-        printf "\033[0;94mGetting .gitignore file...\033[0;36m\n"
+        printf "\t${IGreen}.gitignore does not exist${Cyan}\n"
+        printf "${IBlue}Getting .gitignore file...${Cyan}\n"
         mv ./quickstart/.gitignore ./.gitignore # Get .gitignore from quickstart
     fi
 
-    printf "\033[0;94mChecking for React...\033[0;36m\n"
+    printf "${IBlue}Checking for React...${Cyan}\n"
     reactApp "$react_app" "$typescript"
 
-    printf "\033[0;94mChecking for Bootstrap...\033[0;36m\n"
+    printf "${IBlue}Checking for Bootstrap...${Cyan}\n"
     getBootstrap "$bootstrap"
 
-    printf "\033[0;94mChecking for Eslint...\033[0;36m\n"
+    printf "${IBlue}Checking for Eslint...${Cyan}\n"
     getEslint "$eslint" "$typescript"
 
-    printf "\033[0;92mCleaning up...\033[0;36m\n"
+    printf "${IGreen}Cleaning up...${Cyan}\n"
     rm -rf ./quickstart # Get rid of quickstart
 }
 
 # Ask for proceeding
 printf "$quickstartAscii"
 printf "$startupText"
-printf "\033[0;36mPreparing to quickstart with:\033[0;35m $args\033[0m\n"
+printf "${Cyan}Preparing to quickstart with:${Purple} $args${RESET}\n"
 
 if $noVer; then
     proceed="Y"
 else
-    printf "\033[0;33mProceed? [\033[1;92mY\033[0;94m/\033[0;91mn\033[0m] "
+    printf "${Yellow}Proceed? [${BIGreen}Y${Yellow}/${IRed}n${Yellow}]${RESET} "
     read proceed
 fi
 
 if [ "$proceed" = "Y" ]; then
-    printf "\n\033[0;36mProceeding with quickstart\033[0;36m\n"
+    printf "\n${Cyan}Proceeding with quickstart${Cyan}\n"
     quickStart
-    printf "\033[1;92mQuickstart succesfully quickstarted your project!"
+    printf "${BIGreen}Quickstart succesfully quickstarted your project!"
     exit 0
 elif [ "$proceed" = "n" ]; then
-    printf "\n\033[1;91mAborting quickstart . . .\n"
+    printf "\n${BIRed}Aborting quickstart . . .\n"
     exit 0
 else
-    printf "\n\033[1;91mUnknown input $proceed, aborting\n"
+    printf "\n${BIRed}Unknown input $proceed, aborting\n"
     exit 1
 fi
