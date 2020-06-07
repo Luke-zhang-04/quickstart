@@ -16,9 +16,44 @@ One command to quickstart your project.
 Shell scripts to help you configure a project faster.
 
 ## Usage
-### Example Create React App with Typescript and Eslint
+### Example React App, Typescript, Bootstrap, Eslint, Stylelint, CodeClimate, and Make
+<details open>
+<summary>bash</summary>
+<p>
+
 ```bash
 cd my_project_root
-bash ../quckstart/bash/main.sh react ts eslint
+bash ../quckstart/bash/main.sh react ts bs esl sl cc make
 ```
-![Screen Shot 2020-05-27 at 9 16 14 PM](https://user-images.githubusercontent.com/55749227/83087961-85c7f480-a060-11ea-9ff7-d840dc026cf9.png)
+</p>
+</details>
+<details>
+<summary>zsh</summary>
+<p>
+Coming soon, for now, just run with bash
+
+```zsh
+cd my_project_root
+bash ../quckstart/bash/main.sh react ts bs esl sl cc make
+```
+</p>
+</details>
+<details>
+<summary>fish</summary>
+<p>
+Coming soon, for now, just run with bash
+
+```shell
+cd my_project_root
+bash ../quckstart/bash/main.sh react ts bs esl sl cc make
+```
+</p>
+</details>
+<details>
+<summary>Powershell</summary>
+<p>
+Coming soon
+</p>
+</details>
+
+<img alt="example" src="assets/example.png"/>

@@ -33,12 +33,12 @@ mv ./eslint/typescript.eslintrc.json ./.eslintrc.json
 mv ./eslint/.eslintignore ./.eslintignore
 rm -rf ./eslint
 
+yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-prefer-arrow eslint-plugin-react -D
+
 mv ./quickstart/.codeclimate.yml ./.codeclimate.yml
 
 mv ./quickstart/.stylelintrc.json ./.stylelintrc.json
 yarn add stylelint stylelint-config-standard -D
-
-yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-prefer-arrow eslint-plugin-react -D
 
 ** ESLINT ONLY **
 printf "\nlint:\n\tnpx eslint \"*/**/*.{js,jsx,ts,tsx}\"\n\nlint-fix:\n\tnpx eslint \"*/**/*.{js,jsx,ts,tsx}\" --fix\n" >> makefile
