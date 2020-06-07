@@ -52,7 +52,7 @@ cloneConfigGist() {
 getEslint() {
     if "$1"&&"$2"; then
         printf "\t${IGreen}Eslint with Typescript requested\n\t${IBlue}Installing Eslint with Typescript...\n"
-        cloneConfigGist $3
+        cloneConfigGist "$3"
 
         # Chceck for .eslintrc
         printf "\t\t${IBlue}Checking for .eslintrc.json file...${Cyan}\n"
