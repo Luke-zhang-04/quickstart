@@ -15,6 +15,19 @@ One command to quickstart your project.
 
 Shell scripts to help you configure a project faster.
 
+## Installation
+### Curl
+```bash
+curl -L https://github.com/Luke-zhang-04/quickstart/archive/<VERSION_NAME>.tar.gz | tar zx # Download file
+mv quickstart-<VERSION_NAME> quickstart/ # Rename folder to just quickstart
+```
+### Git Clone
+Warning: this clones the latest version from master, which may not be stable
+```bash
+git clone https://github.com/Luke-zhang-04/quickstart.git quickstart # Clones repo to quickstart dir
+```
+Alternaitvely, you can download manually from [https://github.com/Luke-zhang-04/quickstart/releases](https://github.com/Luke-zhang-04/quickstart/releases)
+
 ## Usage
 ### Example React App, Typescript, Bootstrap, Eslint, Stylelint, CodeClimate, and Make
 <details open>
@@ -56,4 +69,5 @@ Coming soon
 </p>
 </details>
 
+### Quickstart without any options
 <img alt="example" src="assets/example.png"/>
