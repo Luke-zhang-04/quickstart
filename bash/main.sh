@@ -84,7 +84,7 @@ quickStart() {
     getBootstrap "$bootstrap"
 
     printf "${IBlue}Checking for Eslint...${Cyan}\n"
-    getEslint "$eslint" "$typescript"
+    getEslint "$eslint" "$typescript" "$react_app"
 
     printf "${IBlue}Checking for CodeClimate...${Cyan}\n"
     getCodeClimate "$codeclimate"

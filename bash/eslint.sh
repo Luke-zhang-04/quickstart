@@ -10,7 +10,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get lo
 # Globals:
 #   None
 # Arguments:
-#   None
+#   react_app: boolean
 #######################################
 cloneConfigGist() {
     # Clone the quickstart Gist. Check this Gist's code first, in case you don't trust me (don't trust anyone).
@@ -28,6 +28,16 @@ cloneConfigGist() {
         mv ./eslint/.eslintignore ./.eslintignore
         printf "\t\t\t${IGreen}Got .eslintignore ${Cyan}\n"
     fi
+
+    printf "\t\t${IBlue}Checking for react_app...${Cyan}\n"
+    if $1; then
+        printf "\t\t\t${IYellow}React_app found${Cyan}\n"
+    else
+        printf "\t\t\t${IGreen}React_app not found${Cyan}\n"
+        printf "\t\t\t${IBlue}Installing eslint independently${Cyan}\n"
+        yarn add eslint eslint-config-recommended -D
+        printf "\t\t\t${IGreen}Eslint installed!${Cyan}\n"
+    fi
 }
 
 #######################################
@@ -37,11 +47,12 @@ cloneConfigGist() {
 # Arguments:
 #   eslint: boolean
 #   typescript: boolean
+#   react_app: boolean
 #######################################
 getEslint() {
     if "$1"&&"$2"; then
         printf "\t${IGreen}Eslint with Typescript requested\n\t${IBlue}Installing Eslint with Typescript...\n"
-        cloneConfigGist
+        cloneConfigGist $3
 
         # Chceck for .eslintrc
         printf "\t\t${IBlue}Checking for .eslintrc.json file...${Cyan}\n"
@@ -64,7 +75,7 @@ getEslint() {
         printf "\t${IGreen}Installed Eslint with Typescript!${Cyan}\n"
     elif "$1"; then
         printf "\t${IGreen}Eslint without Typescript requested\n\t${IBlue}Installing Eslint with Typescript...\n"
-        cloneConfigGist
+        cloneConfigGist $3
 
         # Chceck for .eslintrc
         printf "\t\t${IBlue}Checking for .eslintrc file...${Cyan}\n"
