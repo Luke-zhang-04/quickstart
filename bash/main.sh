@@ -71,8 +71,9 @@ quickStart() {
         printf "\t${IYellow}.gitignore exists${Cyan}\n"
     else
         printf "\t${IGreen}.gitignore does not exist${Cyan}\n"
-        printf "${IBlue}Getting .gitignore file...${Cyan}\n"
+        printf "\t${IBlue}Getting .gitignore file...${Cyan}\n"
         mv ./quickstart/.gitignore ./.gitignore # Get .gitignore from quickstart
+        printf "\t${IGreen}Got .gitignore file${Cyan}\n"
     fi
 
     printf "${IBlue}Checking for React...${Cyan}\n"
