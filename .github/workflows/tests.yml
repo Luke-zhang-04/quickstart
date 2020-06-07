@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash ./bash.sh eslint 
+      - run: bash ./bash.sh eslint noVer
     
   react-ts-bs:
     runs-on: ubuntu-latest
