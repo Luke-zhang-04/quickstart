@@ -54,4 +54,3 @@ bash ../quckstart/bash/main.sh react ts bs eslint stylelint codeclimate
 Coming soon
 </p>
 </details>
-
