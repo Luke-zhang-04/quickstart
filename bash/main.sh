@@ -2,6 +2,14 @@
 # Quickstart
 # Copyright (c) 2020 Luke Zhang | https://luke-zhang-04.github.io/ | MIT Licence
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get location of this script
+scripts=("bootstrap" "eslint" "react")
+
+# Import other scripts from bash directory
+for script in "${scripts[@]}"; do
+    . "$DIR/$script.sh"
+done
+
 args="$*" # Passed in arguments
 quickstartAscii="\033[0;36m
   ____        _      _        _             _   
@@ -40,83 +48,6 @@ checkParams stylelint stylelint
 checkParams bootstrap bootstrap bs
 checkParams noVer noVer nv
 
-#######################################
-# Create react app
-# Globals:
-#   bootstrap
-# Arguments:
-#   None
-#######################################
-getBootstrap() {
-    if "$bootstrap"; then # If Bootstrap was requested
-        printf "\t\033[0;92mBootstrap requested\n\t\033[0;94mInstalling Bootstrap...\033[0m\n"
-        yarn add bootstrap # Add bootstrap with Yarn
-
-        printf "\t\033[0;92mInstalled Bootstrap!\033[0m\n"
-        printf "\t\033[0;94mChecking for scss directory...\033[0m\n"
-
-        if [ -d "./scss" ]; then # Check for scss directory
-            printf "\t\t\033[0;93mscss directory found\033[0m\n"
-        else
-            printf "\t\t\033[0;94mscss directory not found, creating scss directory...\033[0m\n"
-            mkdir scss # Make a SCSS directory
-            printf "\t\033[0;94mAdding default imports to scss/bootstrap.scss...\033[0m\n"
-            # Add default imports into ./scss/bootstrap.scss
-            printf "/*!\n * Bootstrap v4.5.0 (https://getbootstrap.com/)\n * Copyright 2011-2020 The Bootstrap Authors\n * Copyright 2011-2020 Twitter, Inc.\n * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n */\n\n// Required\n@import \"./../node_modules/bootstrap/scss/functions\";\n@import \"./../node_modules/bootstrap/scss/variables\";\n@import \"./../node_modules/bootstrap/scss/mixins\";\n\n// Optional\n@import \"./../node_modules/bootstrap/scss/root\";\n@import \"./../node_modules/bootstrap/scss/reboot\";\n@import \"./../node_modules/bootstrap/scss/type\";\n@import \"./../node_modules/bootstrap/scss/images\";\n@import \"./../node_modules/bootstrap/scss/code\";\n@import \"./../node_modules/bootstrap/scss/grid\";\n@import \"./../node_modules/bootstrap/scss/tables\";\n@import \"./../node_modules/bootstrap/scss/forms\";\n@import \"./../node_modules/bootstrap/scss/buttons\";\n@import \"./../node_modules/bootstrap/scss/transitions\";\n@import \"./../node_modules/bootstrap/scss/dropdown\";\n@import \"./../node_modules/bootstrap/scss/button-group\";\n@import \"./../node_modules/bootstrap/scss/input-group\";\n@import \"./../node_modules/bootstrap/scss/custom-forms\";\n@import \"./../node_modules/bootstrap/scss/nav\";\n@import \"./../node_modules/bootstrap/scss/navbar\";\n@import \"./../node_modules/bootstrap/scss/card\";\n@import \"./../node_modules/bootstrap/scss/breadcrumb\";\n@import \"./../node_modules/bootstrap/scss/pagination\";\n@import \"./../node_modules/bootstrap/scss/badge\";\n@import \"./../node_modules/bootstrap/scss/jumbotron\";\n@import \"./../node_modules/bootstrap/scss/alert\";\n@import \"./../node_modules/bootstrap/scss/progress\";\n@import \"./../node_modules/bootstrap/scss/media\";\n@import \"./../node_modules/bootstrap/scss/list-group\";\n@import \"./../node_modules/bootstrap/scss/close\";\n@import \"./../node_modules/bootstrap/scss/toasts\";\n@import \"./../node_modules/bootstrap/scss/modal\";\n@import \"./../node_modules/bootstrap/scss/tooltip\";\n@import \"./../node_modules/bootstrap/scss/popover\";\n@import \"./../node_modules/bootstrap/scss/carousel\";\n@import \"./../node_modules/bootstrap/scss/spinners\";\n@import \"./../node_modules/bootstrap/scss/utilities\";\n@import \"./../node_modules/bootstrap/scss/print\";\n" > scss/bootstrap.scss
-            printf "\t\033[0;94mCreating new make commands sass and sass-min...\033[0m\n"
-            printf "sass:\n\tsass ./scss/bootstrap.scss ./public/css/styles.css\n\nsass-min:\n\tsass ./scss/bootstrap.scss ./public/css/styles.css --style compressed\n" >> makefile # Make sass compiling make commands
-            make # Compile sass as-is
-            printf "\t\033[0;92mMake commands created and executed!\033[0m\n"
-        fi
-        
-        printf "\033[0;92mInstalled Bootstrap!\033[0m\n"
-    else
-        printf "\t\033[0;93mBootstrap not requested\033[0m\n"
-    fi
-}
-
-#######################################
-# Move files made with create react app to root
-# Globals:
-#   none
-# Arguments:
-#   None
-#######################################
-moveReactFiles() {
-    mv ./client/node_modules/ ./node_modules/ # Move node_modules out
-    mv ./client/public/ ./public/ # Move public out
-    mv ./client/src ./src/ # Move src out
-    rm -r client/.gitignore # Remove .gitignore (already made)
-    mv ./client/package.json ./package.json # Move package.json out
-    rm -r client/README.md # Remove README.md
-    mv ./client/tsconfig.json ./tsconfig.json # move tsconfig.json out
-    mv ./client/yarn.lock ./yarn.lock # Move yarn.lock out
-    rm -rf ./client/ # Remove client folder
-}
-
-#######################################
-# Create react app
-# Globals:
-#   react_app
-#   typescript
-# Arguments:
-#   None
-#######################################
-reactApp() {
-    if "$react_app"&&"$typescript"; then # React app w/ typescript
-        printf "\t\033[0;92mReact with Typescript requested\n\t\033[0;94mInstalling React with Typescript...\033[0;36m\n"
-        npx create-react-app client --template typescript # Create React app named client, with typescript template
-        printf "\t\033[0;92mInstalled React with Typescript!\033[0;36m\n"
-        moveReactFiles
-    elif "$react_app"; then # React app wo/ typescript
-        printf "\t\033[0;92mReact without Typescript requested\n\t\033[0;94mInstalling React...\033[0;36m\n"
-        npx create-react-app client # Create React app names client
-        printf "\t\033[0;92mInstalled React!\033[0;36m\n"
-        moveReactFiles
-    else
-        printf "\t\033[0;93mReact not requested\033[0;36m\n"
-    fi
-}
 
 #######################################
 # Main function
@@ -143,10 +74,13 @@ quickStart() {
     fi
 
     printf "\033[0;94mChecking for React...\033[0;36m\n"
-    reactApp
+    reactApp "$react_app" "$typescript"
 
     printf "\033[0;94mChecking for Bootstrap...\033[0;36m\n"
-    getBootstrap
+    getBootstrap "$bootstrap"
+
+    printf "\033[0;94mChecking for Eslint...\033[0;36m\n"
+    getEslint "$eslint" "$typescript"
 
     printf "\033[0;92mCleaning up...\033[0;36m\n"
     rm -rf ./quickstart # Get rid of quickstart
