@@ -36,6 +36,7 @@ checkParams() { # Check passed in arguments and match them
 checkParams react_app react
 checkParams typescript typescript ts
 checkParams eslint eslint
+checkParams stylelint stylelint
 checkParams bootstrap bootstrap bs
 checkParams noVer noVer nv
 
@@ -109,7 +110,7 @@ reactApp() {
         printf "\t\033[0;92mInstalled React!\033[0;36m\n"
         moveReactFiles
     else
-        printf "\tReact not requested\033[0;36m\n"
+        printf "\t\033[0;93mReact not requested\033[0;36m\n"
     fi
 }
 
@@ -128,8 +129,14 @@ quickStart() {
     printf "\033[0;94mCloning quickstart gist from https://gist.github.com/d4c19d39f0a462fc79e0b3361752cf95.git\033[0;36m\n"
     git clone https://gist.github.com/d4c19d39f0a462fc79e0b3361752cf95.git quickstart
 
-    printf "\033[0;94mGetting .gitignore file...\033[0;36m\n"
-    mv ./quickstart/.gitignore ./.gitignore # Get .gitignore from quickstart
+    printf "\033[0;94mChecking for .gitignore file...\033[0;36m\n"
+    if test -f ".gitignore"; then
+        printf "\t\033[0;93m.gitignore exists\033[0;36m\n"
+    else
+        printf "\t\033[0;.gitignore does not exist\033[0;36m\n"
+        printf "\033[0;94mGetting .gitignore file...\033[0;36m\n"
+        mv ./quickstart/.gitignore ./.gitignore # Get .gitignore from quickstart
+    fi
 
     printf "\033[0;94mChecking for React...\033[0;36m\n"
     reactApp
