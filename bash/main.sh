@@ -3,7 +3,7 @@
 # Copyright (c) 2020 Luke Zhang | https://luke-zhang-04.github.io/ | MIT Licence
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get location of this script
-scripts=("bootstrap" "eslint" "react" "codeclimate")
+scripts=("bootstrap" "eslint" "react" "codeclimate" "stylelint" "make")
 
 # Import other scripts from bash directory
 for script in "${scripts[@]}"; do
@@ -12,7 +12,8 @@ done
 
 . "${DIR}/colours.sh"
 
-args="$*" # Passed in arguments
+argString="$*" # Passed in arguments
+IFS=" " read -ra args <<< "$argString"
 quickstartAscii="$Cyan
   ____        _      _        _             _   
  / __ \      (_)    | |      | |           | |  
@@ -24,32 +25,36 @@ quickstartAscii="$Cyan
 startupText="${Cyan}Check us out on GitHub! https://github.com/Luke-zhang-04/quickstart\nWe promise that none of our dependencies, remote repositories/Gists, or shell scripts contain malicious code, but why trust us? Go see for yourself!\nhttps://gist.github.com/Luke-zhang-04/140bea238fa6dec12929c220645540e1\nhttps://gist.github.com/Luke-zhang-04/d4c19d39f0a462fc79e0b3361752cf95\n"
 
 #######################################
-# Checks parameters
+# Checks parameters and returns their existence
 # Globals:
 #   none
 # Arguments:
-#   global to set to
 #   full arg name
 #   short arg name (optional)
 #######################################
 checkParams() { # Check passed in arguments and match them
-    if [[ "$args" == *"$2"* ]]; then
-        eval "$1"=true
-    elif [[ "$args" == *"$3"* ]]&&[[ "$3" ]]; then
-        eval "$1"=true
-    else 
-        eval "$1"=false
-    fi
+    for arg in "${args[@]}"; do
+        if [[ "$arg" == "$1" ]]; then
+            printf true
+            return 0
+        elif [[ "$arg" == "$2" ]]; then
+            printf true
+            return 0
+        fi
+    done
+    printf false
+    return 1
 }
 
 # Check parameters for all the variables
-checkParams react_app react
-checkParams typescript typescript ts
-checkParams eslint eslint
-checkParams stylelint stylelint
-checkParams bootstrap bootstrap bs
-checkParams noVer noVer nv
-checkParams codeclimate codeclimate cc
+bootstrap="$(checkParams bootstrap bs)"
+codeclimate="$(checkParams codeclimate cc)"
+eslint="$(checkParams eslint esl)"
+make="$(checkParams makefile make)"
+noVer="$(checkParams noVer nv)"
+typescript="$(checkParams typescript ts)"
+react_app="$(checkParams react)"
+stylelint="$(checkParams stylelint slint)"
 
 #######################################
 # Main function
@@ -83,10 +88,16 @@ quickStart() {
     getBootstrap "$bootstrap"
 
     printf "${IBlue}Checking for Eslint...${Cyan}\n"
-    getEslint "$eslint" "$typescript"
+    getEslint "$eslint" "$typescript" "$react_app"
 
     printf "${IBlue}Checking for CodeClimate...${Cyan}\n"
     getCodeClimate "$codeclimate"
+
+    printf "${IBlue}Checking for Stylelint...${Cyan}\n"
+    getStylelint "$stylelint"
+
+    printf "${IBlue}Checking for Make...${Cyan}\n"
+    makeMakefile "$make" "$bootstrap" "$eslint" "$stylelint"
 
     printf "${IGreen}Cleaning up...${Cyan}\n"
     rm -rf ./quickstart # Get rid of quickstart
@@ -95,7 +106,7 @@ quickStart() {
 # Ask for proceeding
 printf "$quickstartAscii"
 printf "$startupText"
-printf "${Cyan}Preparing to quickstart with:${Purple} $args${RESET}\n"
+printf "${Cyan}Preparing to quickstart with:${Purple} $argString${RESET}\n"
 
 if $noVer; then
     proceed="Y"
@@ -106,7 +117,7 @@ fi
 
 if [ "$proceed" = "Y" ]; then
     printf "\n${Cyan}Proceeding with quickstart${Cyan}\n"
-    quickStart
+    quickStart # Invoke main quickstart function
     printf "${BIGreen}Quickstart succesfully quickstarted your project!"
     exit 0
 elif [ "$proceed" = "n" ]; then

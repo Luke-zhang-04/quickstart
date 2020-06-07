@@ -30,9 +30,27 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: bash ./bash.sh eslint noVer
-    
-  react-ts-bs-eslint:
+  
+  codeclimate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash ./bash.sh react ts bs eslint noVer
+      - run: bash ./bash.sh codeclimate noVer
+  
+  stylelint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: bash ./bash.sh stylelint noVer
+    
+  react-ts-bs-eslint-stylelint-codeclimate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: bash ./bash.sh react ts bs esl cc slint make noVer
+      - run: mkdir result
+      - run: mv ./public/ ./result/public/; mv ./scss/ ./result/scss/; mv ./src/ ./result/src/; mv ./.codeclimate.yml ./result/.codeclimate.yml; mv ./.eslintignore ./result/.eslintignore; mv ./.eslintrc.json ./result/.eslintrc.json; mv ./.gitignore ./result/.gitignore; mv ./.stylelintrc.json ./result/.stylelintrc.json; mv ./makefile ./result/makefile; mv ./package.json ./result/package.json; mv ./tsconfig.json ./result/tsconfig.json; mv ./yarn.lock ./result/yarn.lock
+      - uses: actions/upload-artifact@v2
+        with:
+          name: result
+          path: result/
