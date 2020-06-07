@@ -3,7 +3,7 @@
 # Copyright (c) 2020 Luke Zhang | https://luke-zhang-04.github.io/ | MIT Licence
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get location of this script
-scripts=("bootstrap" "eslint" "react" "codeclimate" "stylelint")
+scripts=("bootstrap" "eslint" "react" "codeclimate" "stylelint" "make")
 
 # Import other scripts from bash directory
 for script in "${scripts[@]}"; do
@@ -45,11 +45,12 @@ checkParams() { # Check passed in arguments and match them
 # Check parameters for all the variables
 checkParams bootstrap bootstrap bs
 checkParams codeclimate codeclimate cc
-checkParams eslint eslint esl
+checkParams eslint eslint
+checkParams make makefile make
 checkParams noVer noVer nv
 checkParams typescript typescript ts
 checkParams react_app react
-checkParams stylelint stylelint sl
+checkParams stylelint stylelint slint
 
 #######################################
 # Main function
@@ -90,6 +91,9 @@ quickStart() {
 
     printf "${IBlue}Checking for Stylelint...${Cyan}\n"
     getStylelint "$stylelint"
+
+    printf "${IBlue}Checking for Make...${Cyan}\n"
+    makeMakefile "$make" "$bootstrap" "$eslint" "$stylelint"
 
     printf "${IGreen}Cleaning up...${Cyan}\n"
     rm -rf ./quickstart # Get rid of quickstart

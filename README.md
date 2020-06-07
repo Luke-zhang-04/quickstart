@@ -16,14 +16,14 @@ One command to quickstart your project.
 Shell scripts to help you configure a project faster.
 
 ## Usage
-### Example React App with Typescript, Bootstrap, Eslint, Stylelint, and CodeClimate
+### Example React App, Typescript, Bootstrap, Eslint, Stylelint, CodeClimate, and Make
 <details open>
 <summary>bash</summary>
 <p>
 
 ```bash
 cd my_project_root
-bash ../quckstart/bash/main.sh react ts bs eslint stylelint codeclimate
+bash ../quckstart/bash/main.sh react ts bs esl sl cc make
 ```
 </p>
 </details>
@@ -34,7 +34,7 @@ Coming soon, for now, just run with bash
 
 ```zsh
 cd my_project_root
-bash ../quckstart/bash/main.sh react ts bs eslint stylelint codeclimate
+bash ../quckstart/bash/main.sh react ts bs esl sl cc make
 ```
 </p>
 </details>
@@ -45,7 +45,7 @@ Coming soon, for now, just run with bash
 
 ```shell
 cd my_project_root
-bash ../quckstart/bash/main.sh react ts bs eslint stylelint codeclimate
+bash ../quckstart/bash/main.sh react ts bs esl sl cc make
 ```
 </p>
 </details>
