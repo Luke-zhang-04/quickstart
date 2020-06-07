@@ -18,7 +18,7 @@ cloneConfigGist() {
     git clone https://gist.github.com/140bea238fa6dec12929c220645540e1.git eslint
 
     # Chceck for .eslint ignore
-    printf "\t\t${IBlue}Checking for .eslintignore file..."
+    printf "\t\t${IBlue}Checking for .eslintignore file...${Cyan}\n"
     if test -f ".eslintignore"; then
         printf "\t\t\t${IYellow}.eslintignore exists${Cyan}\n"
     else
@@ -44,15 +44,15 @@ getEslint() {
         cloneConfigGist
 
         # Chceck for .eslintrc
-        printf "\t\t${IBlue}Checking for .eslintrc file...${Cyan}\n"
-        if test -f ".eslintrc"; then
-            printf "\t\t\t${IYellow}.eslintrc exists${Cyan}\n"
+        printf "\t\t${IBlue}Checking for .eslintrc.json file...${Cyan}\n"
+        if test -f ".eslintrc.json"; then
+            printf "\t\t\t${IYellow}.eslintrc.json exists${Cyan}\n"
         else
             # Get .eslintrc file
             printf "\t\t\t${IGreen}.eslintrc does not exist${Cyan}\n"
-            printf "\t\t\t${IBlue}Getting .eslintrc file...${Cyan}\n"
+            printf "\t\t\t${IBlue}Getting .eslintrc.json file...${Cyan}\n"
             mv ./eslint/typescript.eslintrc.json ./.eslintrc.json
-            printf "\t\t\t${IGreen}Got .eslintrc ${Cyan}\n"
+            printf "\t\t\t${IGreen}Got .eslintrc.json ${Cyan}\n"
         fi
 
         printf "\t\t${IBlue}Installing .eslint dependencies...${Cyan}\n"
