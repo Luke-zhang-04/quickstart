@@ -11,7 +11,7 @@ quickstartAscii="\033[0;36m
 | |__| | |_| | | (__|   <\__ \ || (_| | |  | |_ 
  \___\__\__,_|_|\___|_|\_\___/\__\__,_|_|   \__|
 "
-startupText="\033[0;36mCheck us out on GitHub! https://github.com/Luke-zhang-04/quickstart\nWe promise that none of our Gists contain malicious code, but why trust us? Go see for yourself!\nhttps://gist.github.com/Luke-zhang-04/140bea238fa6dec12929c220645540e1\nhttps://gist.github.com/Luke-zhang-04/d4c19d39f0a462fc79e0b3361752cf95\n"
+startupText="\033[0;36mCheck us out on GitHub! https://github.com/Luke-zhang-04/quickstart\nWe promise that none of our dependencies, remote repositories/Gists, or shell scripts contain malicious code, but why trust us? Go see for yourself!\nhttps://gist.github.com/Luke-zhang-04/140bea238fa6dec12929c220645540e1\nhttps://gist.github.com/Luke-zhang-04/d4c19d39f0a462fc79e0b3361752cf95\n"
 
 #######################################
 # Checks parameters
