@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
 args="$*" # Passed in arguments
+quickstartAscii="
+  ____        _      _        _             _   
+ / __ \      (_)    | |      | |           | |  
+| |  | |_   _ _  ___| | _____| |_ __ _ _ __| |_ 
+| |  | | | | | |/ __| |/ / __| __/ _\` | '__| __|
+| |__| | |_| | | (__|   <\__ \ || (_| | |  | |_ 
+ \___\__\__,_|_|\___|_|\_\___/\__\__,_|_|   \__|
+"
 
 #######################################
 # Checks parameters
@@ -89,14 +97,16 @@ reactApp() {
 #   typescript
 #   eslint
 #   bootstrap
+#   quickstartAscii
 # Arguments:
 #   None
 #######################################
 quickStart() {
+    printf "$quickstartAscii"
+
     # Clone the quickstart Gist. Check this Gist for malicious code first, in case you don't trust me (don't trust anyone).
     printf "Cloning quickstart gist from https://gist.github.com/d4c19d39f0a462fc79e0b3361752cf95.git"
-    git clone https://gist.github.com/d4c19d39f0a462fc79e0b3361752cf95.git
-    mv d4c19d39f0a462fc79e0b3361752cf95 quickstart # Change name to quickstart
+    git clone https://gist.github.com/d4c19d39f0a462fc79e0b3361752cf95.git quickstart
 
     printf "Getting .gitignore file...\n"
     mv ./quickstart/.gitignore ./.gitignore # Get .gitignore from quickstart
