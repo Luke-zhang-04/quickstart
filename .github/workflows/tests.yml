@@ -11,22 +11,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash ./bash/main.sh react noVer
+      - run: bash ./bash.sh react noVer
   
   react-ts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash ./bash/main.sh react typescript noVer
+      - run: bash ./bash.sh react typescript noVer
   
   react-bs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash ./bash/main.sh react bootstrap noVer
-    
-  react-ts-bs:
+      - run: bash ./bash.sh react bootstrap noVer
+  
+  eslint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash ./bash/main.sh react ts bs noVer
+      - run: bash ./bash.sh eslint noVer
+    
+  react-ts-bs-eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: bash ./bash.sh react ts bs eslint noVer
