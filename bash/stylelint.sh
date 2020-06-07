@@ -13,7 +13,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get lo
 #   stylelint: boolean
 #######################################
 getStylelint() {
-    echo "$1"
     if "$1"; then
         printf "\t${IGreen}Stylelint requested\n\t${IBlue}Installing stylelint config file...\n"
 
