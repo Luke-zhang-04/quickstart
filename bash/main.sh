@@ -156,7 +156,7 @@ printf "\033[0;36mPreparing to quickstart with:\033[0;35m $args\033[0m\n"
 if $noVer; then
     proceed="Y"
 else
-    printf "\033[0;33mProceed? [\033[1;92mY/\033[0;91mn\033[0m] "
+    printf "\033[0;33mProceed? [\033[1;92mY\033[0;94m/\033[0;91mn\033[0m] "
     read proceed
 fi
 
