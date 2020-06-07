@@ -45,14 +45,14 @@ getEslint() {
 
         # Chceck for .eslintrc
         printf "\t\t${IBlue}Checking for .eslintrc.json file...${Cyan}\n"
-        if test -f ".eslintrc.json"; then
+        if test -f ".eslintrc.json"; then # Check to see is .eslintrc.json exists
             printf "\t\t\t${IYellow}.eslintrc.json exists${Cyan}\n"
         else
             # Get .eslintrc file
             printf "\t\t\t${IGreen}.eslintrc does not exist${Cyan}\n"
             printf "\t\t\t${IBlue}Getting .eslintrc.json file...${Cyan}\n"
             mv ./eslint/typescript.eslintrc.json ./.eslintrc.json
-            printf "\t\t\t${IGreen}Got .eslintrc.json ${Cyan}\n"
+            printf "\t\t\t${IGreen}Got .eslintrc.json${Cyan}\n"
         fi
 
         printf "\t\t${IBlue}Installing .eslint dependencies...${Cyan}\n"
