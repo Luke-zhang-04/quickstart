@@ -30,9 +30,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: bash ./bash.sh eslint noVer
-    
-  react-ts-bs-eslint:
+  
+  codeclimate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash ./bash.sh react ts bs eslint noVer
+      - run: bash ./bash.sh cc noVer
+  
+  stylelint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: bash ./bash.sh sl noVer
+    
+  react-ts-bs-eslint-stylelint-codeclimate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: bash ./bash.sh react ts bs esl cc sl noVer
