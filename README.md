@@ -15,6 +15,11 @@ One command to quickstart your project.
 
 Shell scripts to help you configure a project faster.
 
+## Resources
+We use resources from the following Gists:<br/>
+[https://gist.github.com/Luke-zhang-04/140bea238fa6dec12929c220645540e1](https://gist.github.com/Luke-zhang-04/140bea238fa6dec12929c220645540e1)<br/>
+[https://gist.github.com/Luke-zhang-04/d4c19d39f0a462fc79e0b3361752cf95](https://gist.github.com/Luke-zhang-04/d4c19d39f0a462fc79e0b3361752cf95)
+
 ## Installation
 ### Curl
 ```bash
@@ -36,7 +41,7 @@ Alternaitvely, you can download manually from [https://github.com/Luke-zhang-04/
 
 ```bash
 cd my_project_root
-bash ../quckstart/bash.bash react ts bs esl sl cc make
+bash ../quckstart/quickstart.bash react ts bs esl sl cc make
 ```
 </p>
 </details>
@@ -47,7 +52,7 @@ Coming soon, for now, just run with bash
 
 ```zsh
 cd my_project_root
-bash ../quckstart/bash.bash react ts bs esl sl cc make
+bash ../quckstart/quickstart.bash react ts bs esl sl cc make
 ```
 </p>
 </details>
@@ -58,7 +63,7 @@ Coming soon, for now, just run with bash
 
 ```shell
 cd my_project_root
-bash ../quckstart/bash.bash react ts bs esl sl cc make
+bash ../quckstart/quickstart.bash react ts bs esl sl cc make
 ```
 </p>
 </details>
