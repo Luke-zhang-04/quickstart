@@ -15,6 +15,9 @@ One command to quickstart your project.
 
 Shell scripts to help you configure a project faster.
 
+## Help wanted
+Unfortunately, I have no idea how to use Powershell or command prompt. Any help adding support for Windows would be great. Alternatively, you can try and get some sort of bash/zsh emulator for Windows.
+
 ## Resources
 We use resources from the following Gists:<br/>
 [https://gist.github.com/Luke-zhang-04/140bea238fa6dec12929c220645540e1](https://gist.github.com/Luke-zhang-04/140bea238fa6dec12929c220645540e1)<br/>
@@ -32,6 +35,16 @@ Warning: this clones the latest version from master, which may not be stable
 git clone https://github.com/Luke-zhang-04/quickstart.git quickstart # Clones repo to quickstart dir
 ```
 Alternaitvely, you can download manually from [https://github.com/Luke-zhang-04/quickstart/releases](https://github.com/Luke-zhang-04/quickstart/releases)
+
+## Add to PATH (Optional)
+You can add quickstart to your PATH, for an example, in bash or zsh:
+```bash
+PATH=$PATH:~/path_to_quickstart/quickstart/
+```
+Or in fish:
+```bash
+set PATH $PATH:~/path_to_quickstart/quickstart/
+```
 
 ## Usage
 ### Example React App, Typescript, Bootstrap, Eslint, Stylelint, CodeClimate, and Make
