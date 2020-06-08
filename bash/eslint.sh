@@ -50,8 +50,8 @@ cloneConfigGist() {
 #   react_app: boolean
 #######################################
 getEslint() {
-    if "$1"&&"$2"; then
-        printf "\t${IGreen}Eslint with Typescript requested\n\t${IBlue}Installing Eslint with Typescript...\n"
+    if "$1"&&"$2"&&"$3"; then # React app with typescript
+        printf "\t${IGreen}Eslint with Typescript and React requested\n\t${IBlue}Installing Eslint with Typescript and React...\n"
         cloneConfigGist "$3"
 
         # Chceck for .eslintrc
@@ -72,9 +72,9 @@ getEslint() {
         printf "\t\t${IGreen}Installed .eslint dependencies!${Cyan}\n"
 
         rm -rf ./eslint # Remove eslint directory
-        printf "\t${IGreen}Installed Eslint with Typescript!${Cyan}\n"
-    elif "$1"; then
-        printf "\t${IGreen}Eslint without Typescript requested\n\t${IBlue}Installing Eslint with Typescript...\n"
+        printf "\t${IGreen}Installed Eslint with Typescript and React!${Cyan}\n"
+    elif "$1"&&"$3"; then # React app without typescript
+        printf "\t${IGreen}Eslint without Typescript, with React requested\n\t${IBlue}Installing Eslint without Typescript, with React...\n"
         cloneConfigGist "$3"
 
         # Chceck for .eslintrc
@@ -94,7 +94,53 @@ getEslint() {
         printf "\t\t${IGreen}Installed .eslint dependencies!${Cyan}\n"
 
         rm -rf ./eslint # Remove eslint directory
-        printf "\t${IGreen}Installed Eslint without Typescript!${Cyan}\n"
+        printf "\t${IGreen}Installed Eslint without Typescript, with React!${Cyan}\n"
+    elif "$1"&&"$2"; then # Eslint with typescript, without react
+        printf "\t${IGreen}Eslint with Typescript, without React requested\n\t${IBlue}Installing Eslint with Typescript, without react...\n"
+        cloneConfigGist "$3"
+
+        # Chceck for .eslintrc
+        printf "\t\t${IBlue}Checking for .eslintrc.json file...${Cyan}\n"
+        if test -f ".eslintrc.json"; then # Check to see is .eslintrc.json exists
+            printf "\t\t\t${IYellow}.eslintrc.json exists${Cyan}\n"
+        else
+            # Get .eslintrc file
+            printf "\t\t\t${IGreen}.eslintrc does not exist${Cyan}\n"
+            printf "\t\t\t${IBlue}Getting .eslintrc.json file...${Cyan}\n"
+            mv ./eslint/typescript-no-react.eslintrc.json ./.eslintrc.json
+            printf "\t\t\t${IGreen}Got .eslintrc.json${Cyan}\n"
+        fi
+
+        printf "\t\t${IBlue}Installing .eslint dependencies...${Cyan}\n"
+        # Install typescript eslint, typescript eslint parser, and eslint prefer arrow plugin
+        yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-prefer-arrow -D
+        printf "\t\t${IGreen}Installed .eslint dependencies!${Cyan}\n"
+
+        rm -rf ./eslint # Remove eslint directory
+        printf "\t${IGreen}Installed Eslint with Typescript, without React!${Cyan}\n"
+    elif "$1"; then # Eslint without typescript, without react
+        printf "\t${IGreen}Eslint without Typescript or React requested\n\t${IBlue}Installing Eslint without Typescript or react...\n"
+        cloneConfigGist "$3"
+
+        # Chceck for .eslintrc
+        printf "\t\t${IBlue}Checking for .eslintrc.json file...${Cyan}\n"
+        if test -f ".eslintrc.json"; then # Check to see is .eslintrc.json exists
+            printf "\t\t\t${IYellow}.eslintrc.json exists${Cyan}\n"
+        else
+            # Get .eslintrc file
+            printf "\t\t\t${IGreen}.eslintrc does not exist${Cyan}\n"
+            printf "\t\t\t${IBlue}Getting .eslintrc.json file...${Cyan}\n"
+            mv ./eslint/no-react.eslintrc.json  ./.eslintrc.json
+            printf "\t\t\t${IGreen}Got .eslintrc.json${Cyan}\n"
+        fi
+
+        printf "\t\t${IBlue}Installing .eslint dependencies...${Cyan}\n"
+        # Install typescript eslint, typescript eslint parser, and eslint prefer arrow plugin
+        yarn add eslint-plugin-prefer-arrow -D
+        printf "\t\t${IGreen}Installed .eslint dependencies!${Cyan}\n"
+
+        rm -rf ./eslint # Remove eslint directory
+        printf "\t${IGreen}Installed Eslint without Typescript or React!${Cyan}\n"
     else
         printf "\t${IYellow}Eslint not requested${Cyan}\n"
     fi

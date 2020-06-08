@@ -15,6 +15,37 @@ One command to quickstart your project.
 
 Shell scripts to help you configure a project faster.
 
+## Help wanted
+Unfortunately, I have no idea how to use Powershell or command prompt. Any help adding support for Windows would be great. Alternatively, you can try and get some sort of bash/zsh emulator for Windows.
+
+## Resources
+We use resources from the following Gists:<br/>
+[https://gist.github.com/Luke-zhang-04/140bea238fa6dec12929c220645540e1](https://gist.github.com/Luke-zhang-04/140bea238fa6dec12929c220645540e1)<br/>
+[https://gist.github.com/Luke-zhang-04/d4c19d39f0a462fc79e0b3361752cf95](https://gist.github.com/Luke-zhang-04/d4c19d39f0a462fc79e0b3361752cf95)
+
+## Installation
+### Curl
+```bash
+curl -L https://github.com/Luke-zhang-04/quickstart/archive/<VERSION_NAME>.tar.gz | tar zx # Download file
+mv quickstart-<VERSION_NAME> quickstart/ # Rename folder to just quickstart
+```
+### Git Clone
+Warning: this clones the latest version from master, which may not be stable
+```bash
+git clone https://github.com/Luke-zhang-04/quickstart.git quickstart # Clones repo to quickstart dir
+```
+Alternaitvely, you can download manually from [https://github.com/Luke-zhang-04/quickstart/releases](https://github.com/Luke-zhang-04/quickstart/releases)
+
+## Add to PATH (Optional)
+You can add quickstart to your PATH, for an example, in bash or zsh:
+```bash
+PATH=$PATH:~/path_to_quickstart/quickstart/
+```
+Or in fish:
+```bash
+set PATH $PATH:~/path_to_quickstart/quickstart/
+```
+
 ## Usage
 ### Example React App, Typescript, Bootstrap, Eslint, Stylelint, CodeClimate, and Make
 <details open>
@@ -23,7 +54,7 @@ Shell scripts to help you configure a project faster.
 
 ```bash
 cd my_project_root
-bash ../quckstart/bash.bash react ts bs esl sl cc make
+bash ../quckstart/quickstart.bash react ts bs esl sl cc make
 ```
 </p>
 </details>
@@ -34,7 +65,7 @@ Coming soon, for now, just run with bash
 
 ```zsh
 cd my_project_root
-bash ../quckstart/bash.bash react ts bs esl sl cc make
+bash ../quckstart/quickstart.bash react ts bs esl sl cc make
 ```
 </p>
 </details>
@@ -45,7 +76,7 @@ Coming soon, for now, just run with bash
 
 ```shell
 cd my_project_root
-bash ../quckstart/bash.bash react ts bs esl sl cc make
+bash ../quckstart/quickstart.bash react ts bs esl sl cc make
 ```
 </p>
 </details>
@@ -56,4 +87,5 @@ Coming soon
 </p>
 </details>
 
+### Quickstart without any options
 <img alt="example" src="assets/example.png"/>
