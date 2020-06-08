@@ -11,43 +11,43 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash ./bash.bash react noVer
+      - run: bash ./quickstart.bash react noVer
   
   react-ts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash ./bash.bash react typescript noVer
+      - run: bash ./quickstart.bash react typescript noVer
   
   react-bs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash ./bash.bash react bootstrap noVer
+      - run: bash ./quickstart.bash react bootstrap noVer
   
   eslint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash ./bash.bash eslint noVer
+      - run: bash ./quickstart.bash eslint noVer
   
   codeclimate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash ./bash.bash codeclimate noVer
+      - run: bash ./quickstart.bash codeclimate noVer
   
   stylelint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash ./bash.bash stylelint noVer
+      - run: bash ./quickstart.bash stylelint noVer
     
   react-ts-bs-eslint-stylelint-codeclimate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash ./bash.bash react ts bs esl cc slint make noVer
+      - run: bash ./quickstart.bash react ts bs esl cc slint make noVer
       - run: mkdir result
       - run: mv ./public/ ./result/public/; mv ./scss/ ./result/scss/; mv ./src/ ./result/src/; mv ./.codeclimate.yml ./result/.codeclimate.yml; mv ./.eslintignore ./result/.eslintignore; mv ./.eslintrc.json ./result/.eslintrc.json; mv ./.gitignore ./result/.gitignore; mv ./.stylelintrc.json ./result/.stylelintrc.json; mv ./makefile ./result/makefile; mv ./package.json ./result/package.json; mv ./tsconfig.json ./result/tsconfig.json; mv ./yarn.lock ./result/yarn.lock
       - uses: actions/upload-artifact@v2
