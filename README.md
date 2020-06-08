@@ -15,7 +15,7 @@ One command to quickstart your project.
 
 Shell scripts to help you configure a project faster.
 
-## Help wanted
+## Windows
 Unfortunately, I have no idea how to use Powershell or command prompt. Any help adding support for Windows would be great. Alternatively, you can try and get some sort of bash/zsh emulator for Windows.
 
 ## Resources
