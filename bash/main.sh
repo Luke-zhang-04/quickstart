@@ -2,6 +2,8 @@
 # Quickstart
 # Copyright (c) 2020 Luke Zhang | https://luke-zhang-04.github.io/ | MIT Licence
 
+version="1.1.0"
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get location of this script
 scripts=("bootstrap" "eslint" "react" "codeclimate" "stylelint" "make")
 
@@ -98,9 +100,6 @@ quickStart() {
 
     printf "${IBlue}Checking for Make...${Cyan}\n"
     makeMakefile "$make" "$bootstrap" "$eslint" "$stylelint"
-
-    printf "${IGreen}Cleaning up...${Cyan}\n"
-    rm -rf ./quickstart # Get rid of quickstart
 }
 
 # Ask for proceeding
@@ -118,7 +117,27 @@ fi
 if [ "$proceed" = "Y" ]; then
     printf "\n${Cyan}Proceeding with quickstart${Cyan}\n"
     quickStart # Invoke main quickstart function
-    printf "${BIGreen}Quickstart succesfully quickstarted your project!"
+    printf "${BIGreen}Quickstart succesfully quickstarted your project!${Cyan}\n"
+    printf "${BIGreen}Please consider mentioning us in your next commit!\n${Cyan}\"Initialized project with Quickstart https://github.com/Luke-zhang-04/quickstart\"${Cyan}\n"
+
+    latest=$(head -n 1 ./quickstart/version.txt)
+
+    if [[ "$latest" == "$version" ]]; then
+        printf "${IBlue}Your quickstart verion ${IGreen}$version${IBlue} is up to date${Cyan}\n"
+    else
+        printf "${IYellow}
+        ______________________________________________________________________________________________________________
+        | Your quickstart version is ${IRed}$version${IYellow}.                                                                          |
+        | A new version of quickstart ${IGreen}($latest)${IYellow} has been released.                                                     |
+        | ${IBlue}Consider upgrading ${IRed}$version ${IBlue}-> ${IGreen}$latest ${IYellow}                                                                         |${IYellow}
+        | You can curl ${IBlue}\"curl -L https://github.com/Luke-zhang-04/quickstart/archive/$latest.tar.gz | tar zx\"${IYellow}           |
+        | Or download from GitHub ${IBlue}https://github.com/Luke-zhang-04/quickstart${IYellow}                                        |
+        | Or clone from GitHub through the CLI ${IBlue}\"git clone https://github.com/Luke-zhang-04/quickstart.git quickstart\"${IYellow}|
+        |____________________________________________________________________________________________________________|${Cyan}\n\n"
+    fi
+
+    printf "${IGreen}Cleaning up...${Cyan}\n"
+    rm -rf ./quickstart # Get rid of quickstart
     exit 0
 elif [ "$proceed" = "n" ]; then
     printf "\n${BIRed}Aborting quickstart . . .\n"
