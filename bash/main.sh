@@ -83,6 +83,16 @@ quickStart() {
         printf "\t${IGreen}Got .gitignore file${Cyan}\n"
     fi
 
+    printf "${IBlue}Checking for package.json file...${Cyan}\n"
+    if test -f "package.json"; then
+        printf "\t${IYellow}package.json exists${Cyan}\n"
+    else
+        printf "\t${IGreen}package.json does not exist${Cyan}\n"
+        printf "\t${IBlue}Creating package.json file...${Cyan}\n"
+        npm init -y
+        printf "\t${IGreen}Created package.json file${Cyan}\n"
+    fi
+
     printf "${IBlue}Checking for React...${Cyan}\n"
     reactApp "$reactApp" "$typescript"
 
