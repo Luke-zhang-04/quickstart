@@ -15,13 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI: change `react-ts-bs-eslint-stylelint-codeclimate` to `all-optons`
 
 ### Fixed
--  fix(make): check for stylelint with `$4` instead of `$3`
+- fix(make): check for stylelint with `$4` instead of `$3`
 
 ## [1.1.0] - 2020/06/14
 ### Added
 - feat(bash): add version checking
-    - now checks for version of Quickstart and notifies if out of date through
-    - happens by reading data from version.txt from the quickstart gist
+  - now checks for version of Quickstart and notifies if out of date through
+  - happens by reading data from version.txt from the quickstart gist
 
 ## [1.0.0] - 2020/06/07
 ### Added
