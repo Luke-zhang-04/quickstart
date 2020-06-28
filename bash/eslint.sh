@@ -10,7 +10,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get lo
 # Globals:
 #   None
 # Arguments:
-#   react_app: boolean
+#   reactApp: boolean
 #######################################
 cloneConfigGist() {
     # Clone the quickstart Gist. Check this Gist's code first, in case you don't trust me (don't trust anyone).
@@ -29,11 +29,11 @@ cloneConfigGist() {
         printf "\t\t\t${IGreen}Got .eslintignore ${Cyan}\n"
     fi
 
-    printf "\t\t${IBlue}Checking for react_app...${Cyan}\n"
+    printf "\t\t${IBlue}Checking for reactApp...${Cyan}\n"
     if $1; then
-        printf "\t\t\t${IYellow}React_app found${Cyan}\n"
+        printf "\t\t\t${IYellow}ReactApp found${Cyan}\n"
     else
-        printf "\t\t\t${IGreen}React_app not found${Cyan}\n"
+        printf "\t\t\t${IGreen}ReactApp not found${Cyan}\n"
         printf "\t\t\t${IBlue}Installing eslint independently${Cyan}\n"
         yarn add eslint eslint-config-recommended -D
         printf "\t\t\t${IGreen}Eslint installed!${Cyan}\n"
@@ -47,7 +47,7 @@ cloneConfigGist() {
 # Arguments:
 #   eslint: boolean
 #   typescript: boolean
-#   react_app: boolean
+#   reactApp: boolean
 #######################################
 getEslint() {
     if "$1"&&"$2"&&"$3"; then # React app with typescript

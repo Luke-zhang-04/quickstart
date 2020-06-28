@@ -39,7 +39,7 @@ moveReactFiles() {
 # Globals:
 #   none
 # Arguments:
-#   react_app: boolean
+#   reactApp: boolean
 #   typescript: boolean
 #######################################
 reactApp() {

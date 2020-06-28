@@ -61,6 +61,11 @@ makeMakefile() {
             printf "\t\t${IYellow}Neither Eslint nor Stylelint were found${Cyan}\n"
         fi
 
+        printf "\t\t${IBlue}Checking for standalone Typescript...${Cyan}\n"
+        if !"$5"&&"$6"; then 
+            printf "\ntsc:\n\tnpx tsc -p .\n" >> makefile # Make tsc shorthand
+        fi
+
         
         printf "${IGreen}Make commands created and executed!${Cyan}\n"
     else

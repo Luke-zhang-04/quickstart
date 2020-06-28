@@ -5,7 +5,7 @@
 version="1.1.0"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get location of this script
-scripts=("bootstrap" "eslint" "react" "codeclimate" "stylelint" "make")
+scripts=("bootstrap" "eslint" "react" "codeclimate" "stylelint" "make" "typescript")
 
 # Import other scripts from bash directory
 for script in "${scripts[@]}"; do
@@ -55,13 +55,13 @@ eslint="$(checkParams eslint esl)"
 make="$(checkParams makefile make)"
 noVer="$(checkParams noVer nv)"
 typescript="$(checkParams typescript ts)"
-react_app="$(checkParams react)"
+reactApp="$(checkParams react)"
 stylelint="$(checkParams stylelint slint)"
 
 #######################################
 # Main function
 # Globals:
-#   react_app
+#   reactApp
 #   typescript
 #   eslint
 #   bootstrap
@@ -84,13 +84,16 @@ quickStart() {
     fi
 
     printf "${IBlue}Checking for React...${Cyan}\n"
-    reactApp "$react_app" "$typescript"
+    reactApp "$reactApp" "$typescript"
 
     printf "${IBlue}Checking for Bootstrap...${Cyan}\n"
     getBootstrap "$bootstrap"
 
+    printf "${IBlue}Checking for standalone Typescript...${Cyan}\n"
+    getTypescript "$reactApp" "$typescript"
+
     printf "${IBlue}Checking for Eslint...${Cyan}\n"
-    getEslint "$eslint" "$typescript" "$react_app"
+    getEslint "$eslint" "$typescript" "$reactApp"
 
     printf "${IBlue}Checking for CodeClimate...${Cyan}\n"
     getCodeClimate "$codeclimate"
@@ -99,7 +102,7 @@ quickStart() {
     getStylelint "$stylelint"
 
     printf "${IBlue}Checking for Make...${Cyan}\n"
-    makeMakefile "$make" "$bootstrap" "$eslint" "$stylelint"
+    makeMakefile "$make" "$bootstrap" "$eslint" "$stylelint" "$reactApp" "$typescript"
 }
 
 # Ask for proceeding
@@ -117,13 +120,13 @@ fi
 if [ "$proceed" = "Y" ]; then
     printf "\n${Cyan}Proceeding with quickstart${Cyan}\n"
     quickStart # Invoke main quickstart function
-    printf "${BIGreen}Quickstart succesfully quickstarted your project!${Cyan}\n"
+    printf "\n${BIGreen}Quickstart succesfully quickstarted your project!${Cyan}\n"
     printf "${BIGreen}Please consider mentioning us in your next commit!\n${Cyan}\"Initialized project with Quickstart https://github.com/Luke-zhang-04/quickstart\"${Cyan}\n"
 
     latest=$(head -n 1 ./quickstart/version.txt)
 
     if [[ "$latest" == "$version" ]]; then
-        printf "${IBlue}Your quickstart verion ${IGreen}$version${IBlue} is up to date${Cyan}\n"
+        printf "\n${IBlue}Your quickstart verion ${IGreen}$version${IBlue} is up to date${Cyan}\n"
     else
         printf "${IYellow}
         ______________________________________________________________________________________________________________
@@ -136,7 +139,7 @@ if [ "$proceed" = "Y" ]; then
         |____________________________________________________________________________________________________________|${Cyan}\n\n"
     fi
 
-    printf "${IGreen}Cleaning up...${Cyan}\n"
+    printf "\n${IGreen}Cleaning up...${Cyan}\n"
     rm -rf ./quickstart # Get rid of quickstart
     exit 0
 elif [ "$proceed" = "n" ]; then
