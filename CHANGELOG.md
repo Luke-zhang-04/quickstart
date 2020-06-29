@@ -4,8 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.2.0] - 2020/06/29
 ### Added
+- feat(bash): add selection menu if no arguments are given
 - feat(typescript): allow for standalone typescript installation
 - feat: add npm `init -y` command when starting project
 - CI: add standalone typescript testing
@@ -31,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - rename bash.bash to quickstart.bash
 - docs(README): update readme with updated file names and resources header
 
-## [0.1.0-b] -2020/06/07
+## [0.1.0-b] - 2020/06/07
 ### Added
 - feat(react): add react app and react app with typescript
 - feat(bash): add bootstrap option
