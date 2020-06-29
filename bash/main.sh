@@ -2,7 +2,7 @@
 # Quickstart
 # Copyright (c) 2020 Luke Zhang | https://luke-zhang-04.github.io/ | MIT Licence
 
-version="1.1.0"
+version="1.2.0"
 
 # tabs 8
 
