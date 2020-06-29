@@ -2,10 +2,12 @@
 # Quickstart
 # Copyright (c) 2020 Luke Zhang | https://luke-zhang-04.github.io/ | MIT Licence
 
-version="1.1.0"
+version="1.2.0"
+
+# tabs 8
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get location of this script
-scripts=("bootstrap" "eslint" "react" "codeclimate" "stylelint" "make")
+scripts=("bootstrap" "codeclimate" "eslint" "make" "react" "stylelint" "typescript")
 
 # Import other scripts from bash directory
 for script in "${scripts[@]}"; do
@@ -29,7 +31,7 @@ startupText="${Cyan}Check us out on GitHub! https://github.com/Luke-zhang-04/qui
 #######################################
 # Checks parameters and returns their existence
 # Globals:
-#   none
+#   args: string[] - aka sys.argv
 # Arguments:
 #   full arg name
 #   short arg name (optional)
@@ -55,13 +57,14 @@ eslint="$(checkParams eslint esl)"
 make="$(checkParams makefile make)"
 noVer="$(checkParams noVer nv)"
 typescript="$(checkParams typescript ts)"
-react_app="$(checkParams react)"
+reactApp="$(checkParams react)"
 stylelint="$(checkParams stylelint slint)"
+help="$(checkParams -h --help)"
 
 #######################################
 # Main function
 # Globals:
-#   react_app
+#   reactApp
 #   typescript
 #   eslint
 #   bootstrap
@@ -83,14 +86,27 @@ quickStart() {
         printf "\t${IGreen}Got .gitignore file${Cyan}\n"
     fi
 
+    printf "${IBlue}Checking for package.json file...${Cyan}\n"
+    if test -f "package.json"; then
+        printf "\t${IYellow}package.json exists${Cyan}\n"
+    else
+        printf "\t${IGreen}package.json does not exist${Cyan}\n"
+        printf "\t${IBlue}Creating package.json file...${Cyan}\n"
+        npm init -y
+        printf "\t${IGreen}Created package.json file${Cyan}\n"
+    fi
+
     printf "${IBlue}Checking for React...${Cyan}\n"
-    reactApp "$react_app" "$typescript"
+    reactApp "$reactApp" "$typescript"
 
     printf "${IBlue}Checking for Bootstrap...${Cyan}\n"
     getBootstrap "$bootstrap"
 
+    printf "${IBlue}Checking for standalone Typescript...${Cyan}\n"
+    getTypescript "$reactApp" "$typescript"
+
     printf "${IBlue}Checking for Eslint...${Cyan}\n"
-    getEslint "$eslint" "$typescript" "$react_app"
+    getEslint "$eslint" "$typescript" "$reactApp"
 
     printf "${IBlue}Checking for CodeClimate...${Cyan}\n"
     getCodeClimate "$codeclimate"
@@ -99,13 +115,47 @@ quickStart() {
     getStylelint "$stylelint"
 
     printf "${IBlue}Checking for Make...${Cyan}\n"
-    makeMakefile "$make" "$bootstrap" "$eslint" "$stylelint"
+    makeMakefile "$make" "$bootstrap" "$eslint" "$stylelint" "$reactApp" "$typescript"
 }
 
 # Ask for proceeding
 printf "$quickstartAscii"
 printf "$startupText"
-printf "${Cyan}Preparing to quickstart with:${Purple} $argString${RESET}\n"
+
+if $help; then
+    printf "${Cyan}Usage: ${IBlue}Quickstart ${IGreen}[options]${Cyan}\n\n"
+
+    printf "${IBlue}Options:${Cyan}\n"
+    printf "  ${IGreen}bootstrap bs${Cyan}    add bootstrap and configure SCSS file\n"
+    printf "  ${IGreen}codeclimate cc${Cyan}  add codeclimate configuration\n"
+    printf "  ${IGreen}eslint esl${Cyan}      add eslint configuration and ignore file\n"
+    printf "  ${IGreen}makefile make${Cyan}   add makefile with compile and lint commands\n"
+    printf "  ${IGreen}noVer nv${Cyan}        skip verification and download immediately\n"
+    printf "  ${IGreen}react${Cyan}           initialize React application\n"
+    printf "  ${IGreen}stylelint slint${Cyan} add stylelint configuration\n"
+    printf "  ${IGreen}typescript ts${Cyan}   add Typescript and configure as needed\n"
+    printf "  ${IGreen}-h --help${Cyan}       display help for command\n"
+    printf "\n\n${Cyan}Pass in no options for selection menu\n"
+    exit 0
+fi
+
+if [[ "$argString" == "" ]]; then
+    . "${DIR}/selection.sh"
+
+    menu "${scripts[@]}"
+
+    bootstrap="$(checkOptions bootstrap)"
+    codeclimate="$(checkOptions codeclimate)"
+    eslint="$(checkOptions eslint)"
+    make="$(checkOptions make)"
+    typescript="$(checkOptions typescript)"
+    reactApp="$(checkOptions react)"
+    stylelint="$(checkOptions stylelint)"
+
+    printf "${Cyan}Preparing to quickstart with:${Purple} $(showSelected)${RESET}\n"
+else
+    printf "${Cyan}Preparing to quickstart with:${Purple} $argString${RESET}\n"
+fi
 
 if $noVer; then
     proceed="Y"
@@ -117,13 +167,13 @@ fi
 if [ "$proceed" = "Y" ]; then
     printf "\n${Cyan}Proceeding with quickstart${Cyan}\n"
     quickStart # Invoke main quickstart function
-    printf "${BIGreen}Quickstart succesfully quickstarted your project!${Cyan}\n"
+    printf "\n${BIGreen}Quickstart succesfully quickstarted your project!${Cyan}\n"
     printf "${BIGreen}Please consider mentioning us in your next commit!\n${Cyan}\"Initialized project with Quickstart https://github.com/Luke-zhang-04/quickstart\"${Cyan}\n"
 
     latest=$(head -n 1 ./quickstart/version.txt)
 
     if [[ "$latest" == "$version" ]]; then
-        printf "${IBlue}Your quickstart verion ${IGreen}$version${IBlue} is up to date${Cyan}\n"
+        printf "\n${IBlue}Your quickstart verion ${IGreen}$version${IBlue} is up to date${Cyan}\n"
     else
         printf "${IYellow}
         ______________________________________________________________________________________________________________
@@ -136,7 +186,7 @@ if [ "$proceed" = "Y" ]; then
         |____________________________________________________________________________________________________________|${Cyan}\n\n"
     fi
 
-    printf "${IGreen}Cleaning up...${Cyan}\n"
+    printf "\n${IGreen}Cleaning up...${Cyan}\n"
     rm -rf ./quickstart # Get rid of quickstart
     exit 0
 elif [ "$proceed" = "n" ]; then

@@ -42,8 +42,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: bash ./quickstart.bash stylelint noVer
+
+  typescript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: bash ./quickstart.bash typescript noVer
     
-  react-ts-bs-eslint-stylelint-codeclimate:
+  all-options:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Quickstart | Bootstrap functions
+# Quickstart | Makefile generation functions
 # Copyright (c) 2020 Luke Zhang | https://luke-zhang-04.github.io/ | MIT Licence
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get location of this script
@@ -14,6 +14,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get lo
 #   bootstrap: boolean
 #   eslint: boolean
 #   stylelint: boolean
+#   reactApp: boolean
+#   typescript: hoolean
 #######################################
 makeMakefile() {
     if "$1"; then
@@ -48,7 +50,7 @@ makeMakefile() {
             printf "\nlint:\n\tnpx eslint \"*/**/*.{js,jsx,ts,tsx}\"\n\nlint-fix:\n\tnpx eslint \"*/**/*.{js,jsx,ts,tsx}\" --fix\n" >> makefile # Make lint and lint fix make commands
             make lint-fix # Run lint-fix as is
             printf "\t\t\t${IGreen}Succesfully created make commands for Eslint${Cyan}\n"
-        elif "$3"; then
+        elif "$4"; then
             printf "\t\t\t${IYellow}Eslint not found${Cyan}\n"
             printf "\t\t\t${IGreen}Stylelint found${Cyan}\n"
             printf "\t\t\t${IBlue}Creating new make commands lint and lint-fix...${Cyan}\n\t\t\t"
@@ -57,6 +59,11 @@ makeMakefile() {
             printf "\t\t\t${IGreen}Succesfully created make commands for Stylelint${Cyan}\n"
         else
             printf "\t\t${IYellow}Neither Eslint nor Stylelint were found${Cyan}\n"
+        fi
+
+        printf "\t\t${IBlue}Checking for standalone Typescript...${Cyan}\n"
+        if !"$5"&&"$6"; then 
+            printf "\ntsc:\n\tnpx tsc -p .\n" >> makefile # Make tsc shorthand
         fi
 
         
