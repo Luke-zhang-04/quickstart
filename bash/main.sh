@@ -4,10 +4,10 @@
 
 version="1.1.0"
 
-tabs 4
+# tabs 8
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Get location of this script
-scripts=("bootstrap" "eslint" "react" "codeclimate" "stylelint" "make" "typescript")
+scripts=("bootstrap" "codeclimate" "eslint" "make" "react" "stylelint" "typescript")
 
 # Import other scripts from bash directory
 for script in "${scripts[@]}"; do
@@ -31,7 +31,7 @@ startupText="${Cyan}Check us out on GitHub! https://github.com/Luke-zhang-04/qui
 #######################################
 # Checks parameters and returns their existence
 # Globals:
-#   none
+#   args: string[] - aka sys.argv
 # Arguments:
 #   full arg name
 #   short arg name (optional)
@@ -126,19 +126,36 @@ if $help; then
     printf "${Cyan}Usage: ${IBlue}Quickstart ${IGreen}[options]${Cyan}\n\n"
 
     printf "${IBlue}Options:${Cyan}\n"
-    printf "\t${IGreen}bootstrap bs${Cyan}    add bootstrap and configure SCSS file\n"
-    printf "\t${IGreen}codeclimate cc${Cyan}  add codeclimate configuration\n"
-    printf "\t${IGreen}eslint esl${Cyan}      add eslint configuration and ignore file\n"
-    printf "\t${IGreen}makefile make${Cyan}   add makefile with compile and lint commands\n"
-    printf "\t${IGreen}noVer nv${Cyan}        skip verification and download immediately\n"
-    printf "\t${IGreen}react${Cyan}           initialize React application\n"
-    printf "\t${IGreen}stylelint slint${Cyan} add stylelint configuration\n"
-    printf "\t${IGreen}typescript ts${Cyan}   add Typescript and configure as needed\n"
-    printf "\t${IGreen}-h --help${Cyan}       display help for command\n"
+    printf "  ${IGreen}bootstrap bs${Cyan}    add bootstrap and configure SCSS file\n"
+    printf "  ${IGreen}codeclimate cc${Cyan}  add codeclimate configuration\n"
+    printf "  ${IGreen}eslint esl${Cyan}      add eslint configuration and ignore file\n"
+    printf "  ${IGreen}makefile make${Cyan}   add makefile with compile and lint commands\n"
+    printf "  ${IGreen}noVer nv${Cyan}        skip verification and download immediately\n"
+    printf "  ${IGreen}react${Cyan}           initialize React application\n"
+    printf "  ${IGreen}stylelint slint${Cyan} add stylelint configuration\n"
+    printf "  ${IGreen}typescript ts${Cyan}   add Typescript and configure as needed\n"
+    printf "  ${IGreen}-h --help${Cyan}       display help for command\n"
+    printf "\n\n${Cyan}Pass in no options for selection menu\n"
     exit 0
 fi
 
-printf "${Cyan}Preparing to quickstart with:${Purple} $argString${RESET}\n"
+if [[ "$argString" == "" ]]; then
+    . "${DIR}/selection.sh"
+
+    menu "${scripts[@]}"
+
+    bootstrap="$(checkOptions bootstrap)"
+    codeclimate="$(checkOptions codeclimate)"
+    eslint="$(checkOptions eslint)"
+    make="$(checkOptions make)"
+    typescript="$(checkOptions typescript)"
+    reactApp="$(checkOptions react)"
+    stylelint="$(checkOptions stylelint)"
+
+    printf "${Cyan}Preparing to quickstart with:${Purple} $(showSelected)${RESET}\n"
+else
+    printf "${Cyan}Preparing to quickstart with:${Purple} $argString${RESET}\n"
+fi
 
 if $noVer; then
     proceed="Y"
