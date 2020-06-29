@@ -129,7 +129,7 @@ menu() {
 
         if [[ "${selected[@]}" =~ "${#options[@]}" ]]; then
             printf "\n\n"
-            elete="${#options[@]}"
+            delete="${#options[@]}"
             selected=( "${selected[@]/$delete}" ) # Delete index from array
             break
         fi
