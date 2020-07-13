@@ -1,5 +1,5 @@
 <div align="center">
-    <a href="https://github.com/Luke-zhang-04/quickstart"><img alt="logo" src="assets/logo.png"/></a>
+    <a href="https://github.com/Luke-zhang-04/quickstart"><img alt="logo" src="assets/logo.svg"/></a>
 </div>
 
 One command to quickstart your project.
