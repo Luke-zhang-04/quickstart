@@ -19,15 +19,14 @@ done
 argString="$*" # Passed in arguments
 IFS=" " read -ra args <<< "$argString"
 quickstartAscii="$Cyan
-  ____        _      _        _             _   
- / __ \      (_)    | |      | |           | |  
-| |  | |_   _ _  ___| | _____| |_ __ _ _ __| |_ 
+  ____        _      _        _             _
+ / __ \      (_)    | |      | |           | |
+| |  | |_   _ _  ___| | _____| |_ __ _ _ __| |_
 | |  | | | | | |/ __| |/ / __| __/ _\` | '__| __|
-| |__| | |_| | | (__|   <\__ \ || (_| | |  | |_ 
+| |__| | |_| | | (__|   <\__ \ || (_| | |  | |_
  \___\__\__,_|_|\___|_|\_\___/\__\__,_|_|   \__|
 "
 startupText="${Cyan}Check us out on GitHub! https://github.com/Luke-zhang-04/quickstart\nWe promise that none of our dependencies, remote repositories/Gists, or shell scripts contain malicious code, but why trust us? Go see for yourself!\nhttps://gist.github.com/Luke-zhang-04/140bea238fa6dec12929c220645540e1\nhttps://gist.github.com/Luke-zhang-04/d4c19d39f0a462fc79e0b3361752cf95\n"
-
 #######################################
 # Checks parameters and returns their existence
 # Globals:
