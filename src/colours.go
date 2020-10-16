@@ -1,5 +1,6 @@
 package quickstart
 
+// Colours contains all the terminal colour escape codes
 var Colours = map[string]string{
 	// Reset
 	"RESET": "\033[0m", // Text Reset
